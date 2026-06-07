@@ -30,19 +30,19 @@ export default function SignupPage() {
       return
     }
 
-    const checkResponse = await fetch(
+    const lookupResponse = await fetch(
       `/api/check-handle?handle=${encodeURIComponent(normalizedHandle)}`,
     )
 
-    if (!checkResponse.ok) {
+    if (!lookupResponse.ok) {
       setError('Unable to check handle availability right now.')
       setIsSubmitting(false)
       return
     }
 
-    const { available } = await checkResponse.json() as { available: boolean }
+    const { taken } = (await lookupResponse.json()) as { taken: boolean }
 
-    if (!available) {
+    if (taken) {
       setError('That handle is already taken.')
       setIsSubmitting(false)
       return
