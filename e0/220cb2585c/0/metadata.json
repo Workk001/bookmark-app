@@ -1,0 +1,55 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "e0220cb2585c",
+  "session_id": "019ea2a7-4e03-7963-9202-64dd70689ec5",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-07T16:10:33.9097117Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "package-lock.json",
+    "package.json",
+    "src/lib/resend.ts",
+    "src/lib/supabase/client.ts",
+    "src/lib/supabase/middleware.ts",
+    "src/lib/supabase/server.ts",
+    "src/middleware.ts",
+    "src/types/index.ts"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "99be60818bd9",
+  "checkpoint_transcript_start": 84,
+  "transcript_lines_at_start": 84,
+  "token_usage": {
+    "input_tokens": 38489,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 830336,
+    "output_tokens": 6296,
+    "api_call_count": 17
+  },
+  "session_metrics": {
+    "turn_count": 3
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-07T16:10:33.852488Z",
+    "agent_lines": 370,
+    "agent_removed": 2,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 370,
+    "total_lines_changed": 372,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    }
+  ]
+}

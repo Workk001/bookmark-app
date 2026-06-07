@@ -1,0 +1,20 @@
+Okay This is the phase 1 - Foundation 
+use /superpowers to understand the phase 1 and built it properly 
+Read AGENTS.md, CODEX_PROJECT_CONTEXT.md, and CODEX_RULES.md carefully.
+
+Create these files in exact order:
+1. src/types/index.ts
+2. src/lib/supabase/client.ts
+3. src/lib/supabase/server.ts
+4. src/lib/supabase/middleware.ts
+5. src/lib/resend.ts
+6. src/middleware.ts
+
+Rules:
+- client.ts uses createBrowserClient from @supabase/ssr only
+- server.ts uses createServerClient from @supabase/ssr with cookies from next/headers
+- middleware.ts blocks /dashboard for logged-out users and redirects /login and /signup for logged-in users
+- Never use @supabase/auth-helpers-nextjs anywhere
+
+After creating each file tell me what it does in one line.
+Do not create any other files yet.
