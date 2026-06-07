@@ -1,0 +1,72 @@
+Foundation is complete. Now build authentication.
+
+Create in exact order:
+1. src/app/(auth)/login/page.tsx
+2. src/app/(auth)/signup/page.tsx
+3. src/app/api/welcome/route.ts
+
+Rules for signup:
+- Validate handle format with /^[a-zA-Z0-9_]+$/ regex first
+- Check handle availability in profiles table BEFORE calling supabase.auth.signUp()
+- Only after handle is confirmed available, call signUp()
+- Then insert profile row with user id and handle
+- Then call /api/welcome
+- Then redirect to /dashboard
+
+Rules for login:
+- Use signInWithPassword()
+- Call router.refresh() after successful login
+
+Rules for welcome API route:
+- Server side only — uses RESEND_API_KEY not NEXT_PUBLIC_
+- Sender must be onboarding@resend.dev
+- Return 400 if email or handle is missing
+
+After all 3 files, walk me through the exact signup flow step by step.
+
+---
+
+give m ethe folder structure of this project
+
+---
+
+Read AGENTS.md, CODEX_PROJECT_CONTEXT.md, and CODEX_RULES.md first.
+
+Then investigate and fix this bug:
+
+When a logged-out user tries to sign up, the handle availability check is returning 401 Unauthorized from Supabase:
+
+GET /rest/v1/profiles?select=id&handle=eq.dhruv_0612 401
+
+Facts already confirmed:
+- The anon key and URL in .env.local are correct
+- The request headers show apikey and Authorization are both being sent correctly
+- RLS is enabled on profiles table
+- profiles_select_public policy exists with qual: true (allows all reads)
+- relrowsecurity is true
+- Supabase project is not paused
+
+The bug is somewhere in how the browser client is initialized or how the request is being made in the signup page. Check src/app/(auth)/signup/page.tsx and src/lib/supabase/client.ts carefully.
+
+Do not rewrite working files. Find the specific cause of the 401 and fix only that.
+
+---
+
+phase 3 bookmarks API
+Auth is complete. Now build the bookmarks API.
+
+Create src/app/api/bookmarks/route.ts with all 4 handlers:
+- GET: fetch all bookmarks for logged-in user ordered by created_at descending
+- POST: create bookmark with title, url, is_public — validate URL with new URL() in try/catch
+- PATCH: update bookmark by id
+- DELETE: delete bookmark by id
+
+Rules for every single handler:
+- First thing: const { data: { user } } = await supabase.auth.getUser()
+- If no user → return NextResponse.json({ error: 'Unauthorized' }, { status: 401 }) immediately
+- Write operations must include .eq('user_id', user.id) explicitly on top of RLS
+- Always import createClient from @/lib/supabase/server — never from @/lib/supabase/client
+- Validate URL format server-side in POST using new URL(url) inside try/catch
+
+After the file is created, list every security check present in each handler.
+Do not create any other files yet.
