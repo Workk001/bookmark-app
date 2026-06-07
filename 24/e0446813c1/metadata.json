@@ -1,0 +1,41 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "24e0446813c1",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "README.md",
+    "src/app/(auth)/login/page.tsx",
+    "src/app/(auth)/signup/page.tsx",
+    "src/app/[handle]/page.tsx",
+    "src/app/api/bookmarks/route.ts",
+    "src/app/api/welcome/route.ts",
+    "src/app/not-found.tsx",
+    "src/components/BookmarkCard.tsx",
+    "src/components/BookmarkForm.tsx",
+    "src/components/Dashboard.tsx",
+    "src/components/LogoutButton.tsx",
+    "src/lib/resend.ts",
+    "src/lib/supabase/client.ts",
+    "src/lib/supabase/middleware.ts",
+    "src/lib/supabase/server.ts",
+    "src/middleware.ts",
+    "src/types/index.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/24/e0446813c1/0/metadata.json",
+      "transcript": "/24/e0446813c1/0/full.jsonl",
+      "content_hash": "/24/e0446813c1/0/content_hash.txt",
+      "prompt": "/24/e0446813c1/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 29032,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 253568,
+    "output_tokens": 2508,
+    "api_call_count": 11
+  }
+}

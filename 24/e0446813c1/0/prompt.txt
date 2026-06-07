@@ -1,0 +1,5 @@
+read init.md
+
+---
+
+now make the folder architechture as mentioned in md files
