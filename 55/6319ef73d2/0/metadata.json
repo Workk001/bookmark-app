@@ -1,0 +1,94 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "556319ef73d2",
+  "session_id": "019ea2a7-4e03-7963-9202-64dd70689ec5",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-07T18:50:28.6013053Z",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "src/app/(auth)/login/page.tsx",
+    "src/app/(auth)/signup/page.tsx",
+    "src/app/[handle]/page.tsx",
+    "src/app/api/welcome/route.ts",
+    "src/app/not-found.tsx",
+    "src/app/page.tsx",
+    "src/components/Dashboard.tsx"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.4-mini",
+  "turn_id": "8aebf8e5ba0a",
+  "checkpoint_transcript_start": 225,
+  "transcript_lines_at_start": 225,
+  "token_usage": {
+    "input_tokens": 187135,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 2150016,
+    "output_tokens": 17926,
+    "api_call_count": 28
+  },
+  "session_metrics": {
+    "turn_count": 6
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-07T18:50:28.5185118Z",
+    "agent_lines": 241,
+    "agent_removed": 0,
+    "human_added": 350,
+    "human_modified": 231,
+    "human_removed": 0,
+    "total_committed": 674,
+    "total_lines_changed": 822,
+    "agent_percentage": 29.318734793187346,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 60,
+      "user_lines_removed": 2,
+      "agent_lines_added": 309,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "src/app/[handle]/page.tsx": 47,
+        "src/app/not-found.tsx": 11,
+        "src/middleware.ts": 2
+      },
+      "user_removed_per_file": {
+        "src/middleware.ts": 2
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 130,
+      "user_lines_removed": 63,
+      "agent_lines_added": 367,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "src/app/dasshboard/Dashboard.tsx": 26,
+        "src/app/page.tsx": 13,
+        "src/components/Dashboard.tsx": 91
+      },
+      "user_removed_per_file": {
+        "src/app/page.tsx": 63
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 26,
+      "user_lines_removed": 0,
+      "agent_lines_added": 486,
+      "agent_lines_removed": 63,
+      "user_added_per_file": {
+        "src/app/dasshboard/Dashboard.tsx": 26
+      }
+    }
+  ]
+}
