@@ -12,11 +12,11 @@ export async function GET(request: Request) {
     )
   }
 
-  const supabase = await createClient()
+  const supabase = await createClient(true)
 
   const { data, error } = await supabase
     .from('profiles')
-    .select('id')
+    .select('handle')
     .eq('handle', handle)
     .maybeSingle()
 
@@ -27,5 +27,5 @@ export async function GET(request: Request) {
     )
   }
 
-  return NextResponse.json({ taken: !!data })
+  return NextResponse.json({ available: !data })
 }

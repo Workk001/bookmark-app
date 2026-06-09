@@ -40,9 +40,9 @@ export default function SignupPage() {
       return
     }
 
-    const { taken } = (await lookupResponse.json()) as { taken: boolean }
+    const { available } = (await lookupResponse.json()) as { available: boolean }
 
-    if (taken) {
+    if (!available) {
       setError('That handle is already taken.')
       setIsSubmitting(false)
       return

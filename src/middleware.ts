@@ -11,11 +11,23 @@ export async function middleware(request: NextRequest) {
     redirectUrl.pathname = '/login'
     redirectUrl.searchParams.set('next', pathname)
 
-    return NextResponse.redirect(redirectUrl)
+    const redirectResponse = NextResponse.redirect(redirectUrl)
+    // Copy refreshed session cookies so they aren't lost on redirect
+    response.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value)
+    })
+    return redirectResponse
   }
 
   if ((pathname === '/login' || pathname === '/signup') && user) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+    const redirectResponse = NextResponse.redirect(
+      new URL('/dashboard', request.url),
+    )
+    // Copy refreshed session cookies so they aren't lost on redirect
+    response.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value)
+    })
+    return redirectResponse
   }
 
   return response
