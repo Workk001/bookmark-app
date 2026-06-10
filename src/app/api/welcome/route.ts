@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     const errorBody = await res.text()
     console.error('MailerSend API error:', res.status, errorBody)
     return NextResponse.json(
-      { error: 'Failed to send welcome email.', details: errorBody },
+      { error: 'Failed to send welcome email.' },
       { status: 500 },
     )
   }

@@ -19,9 +19,7 @@ export default function Dashboard({ initialBookmarks, profile }: Props) {
     const res = await fetch('/api/bookmarks')
     if (res.ok) {
       const data = await res.json()
-      if (data.bookmarks) {
-        setBookmarks(data.bookmarks)
-      }
+      setBookmarks(Array.isArray(data) ? data : data.bookmarks ?? [])
     }
   }
 
