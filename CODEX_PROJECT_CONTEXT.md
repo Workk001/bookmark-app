@@ -125,7 +125,8 @@ If user A tries to delete user B's bookmark:
 NEXT_PUBLIC_SUPABASE_URL        → Supabase project URL (safe for browser)
 NEXT_PUBLIC_SUPABASE_ANON_KEY   → Supabase anon key (safe for browser)
 SUPABASE_SERVICE_ROLE_KEY       → Supabase service role (SERVER ONLY — never expose)
-RESEND_API_KEY                  → Resend email API key (SERVER ONLY)
+MAILERSEND_API_KEY              → MailerSend email API key (SERVER ONLY)
+MAILERSEND_FROM_EMAIL           → MailerSend sender email (SERVER ONLY)
 NEXT_PUBLIC_APP_URL             → Full app URL e.g. https://bookmarks-app.vercel.app
 ```
 
@@ -150,7 +151,6 @@ src/
 │   │   ├── client.ts       → Browser Supabase client. Use in 'use client' files only.
 │   │   ├── server.ts       → Server Supabase client. Use in Server Components + API routes.
 │   │   └── middleware.ts   → Session refresh logic. Used only by src/middleware.ts.
-│   └── resend.ts           → Resend client. Used only in API routes.
 │
 ├── components/
 │   ├── BookmarkCard.tsx    → Displays one bookmark. Has edit/delete buttons. Client Component.
@@ -173,7 +173,7 @@ src/
     │   └── page.tsx                    → Public profile. Server Component. Shows public bookmarks.
     │
     └── api/
-        ├── welcome/route.ts            → POST. Sends welcome email via Resend.
+        ├── welcome/route.ts            → POST. Sends welcome email via MailerSend.
         └── bookmarks/route.ts          → GET/POST/PATCH/DELETE. All bookmark operations.
 ```
 

@@ -97,13 +97,13 @@ await supabase.from('bookmarks').delete().eq('id', id).eq('user_id', user.id) //
 **Wrong:**
 ```
 NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY=xxx  ❌
-NEXT_PUBLIC_RESEND_API_KEY=xxx             ❌
+NEXT_PUBLIC_MAILERSEND_API_KEY=xxx ❌
 ```
 
 **Correct:**
 ```
 SUPABASE_SERVICE_ROLE_KEY=xxx  ✅  (server only)
-RESEND_API_KEY=xxx             ✅  (server only)
+MAILERSEND_API_KEY=xxx             ✅  (server only)
 ```
 
 ---
