@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server'
 
-import { resend } from '@/lib/resend'
-
 export async function POST(request: Request) {
   const body = (await request.json()) as {
     email?: string
@@ -18,20 +16,43 @@ export async function POST(request: Request) {
     )
   }
 
-  const { error } = await resend.emails.send({
-    from: 'onboarding@resend.dev',
-    to: email,
-    subject: 'Welcome to Bookmarks App',
-    html: `
-      <h1>Welcome, @${handle}</h1>
-      <p>Your Bookmarks App account is ready.</p>
-      <p>You can now save private bookmarks and publish selected links on your public profile.</p>
-    `,
-  })
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+  const apiKey = process.env.MAILERSEND_API_KEY
+  if (!apiKey) {
+    return NextResponse.json(
+      { error: 'Email service is not configured.' },
+      { status: 500 },
+    )
   }
 
-  return NextResponse.json({ ok: true })
+  const senderEmail =
+    process.env.MAILERSEND_FROM_EMAIL || 'MS_sender@trial-xxxxx.mlsender.net'
+
+  const res = await fetch('https://api.mailersend.com/v1/email', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: { email: senderEmail },
+      to: [{ email }],
+      subject: 'Welcome to Bookmarks App',
+      html: `
+        <h1>Welcome, @${handle}!</h1>
+        <p>Your Bookmarks App account is ready.</p>
+        <p>You can now save private bookmarks and publish selected links on your public profile.</p>
+      `,
+    }),
+  })
+
+  if (!res.ok) {
+    const errorBody = await res.text()
+    console.error('MailerSend API error:', res.status, errorBody)
+    return NextResponse.json(
+      { error: 'Failed to send welcome email.', details: errorBody },
+      { status: 500 },
+    )
+  }
+
+  return NextResponse.json({ success: true })
 }

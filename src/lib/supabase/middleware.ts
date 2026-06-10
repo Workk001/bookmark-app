@@ -39,9 +39,28 @@ export async function updateSession(request: NextRequest) {
     },
   )
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  let user = null
+
+  try {
+    const { data } = await supabase.auth.getUser()
+    user = data.user
+  } catch (err: unknown) {
+    // Stale refresh tokens cause AuthApiError — clear cookies and treat as logged out
+    const isAuthError =
+      err instanceof Error &&
+      (err.message.includes('Refresh Token') ||
+        err.message.includes('refresh_token'))
+
+    if (isAuthError) {
+      // Delete all Supabase auth cookies so the stale session is gone
+      request.cookies.getAll().forEach(({ name }) => {
+        if (name.startsWith('sb-')) {
+          request.cookies.delete(name)
+          response.cookies.delete(name)
+        }
+      })
+    }
+  }
 
   return { response, user }
 }
