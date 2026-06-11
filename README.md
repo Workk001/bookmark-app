@@ -2,6 +2,8 @@
 
 Bookmarks App is a personal links and bookmark manager that allows authenticated users to save links, mark them as public or private, and display public links on a dynamic `/<handle>` landing page. The application enforces database-level privacy constraints via PostgreSQL Row Level Security (RLS) so that private bookmarks remain invisible and unmodifiable to other users, while guest visitors can access a user's public profile page without authentication.
 
+To check the prompts, visit [prompts.md](prompts.md).
+
 ## Live URL
 [https://bookmark-app-lovat-seven.vercel.app]
 
